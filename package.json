@@ -1,0 +1,11 @@
+{
+  "name": "vanillaJS",
+  "version": "1.0.0",
+  "description": "To-Do List - Vanilla JS ",
+  "main": "app.js",
+  "author": "flwv",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
