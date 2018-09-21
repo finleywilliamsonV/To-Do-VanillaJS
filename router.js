@@ -23,7 +23,7 @@ function index(req, res) {
 	}
 }
 
-// style route
+// serve static styles
 function style(req, res) {
 	if (req.url.indexOf('.css') !== -1) {
 		console.log('router.style() -> CSS Request URL: ' + req.url);
@@ -34,6 +34,7 @@ function style(req, res) {
 	}
 }
 
+// serve static js
 function javascript(req, res) {
 	if (req.url.indexOf('.js') !== -1) {
 		console.log('router.javascript() -> JS Request URL: ' + req.url);

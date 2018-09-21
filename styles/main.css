@@ -15,7 +15,7 @@
 }
 
 #add-list-item-form {
-	margin-top: 20px;
+	margin: 20px auto 0;
 }
 
 #add-new-list-item-button {
@@ -23,7 +23,12 @@
 }
 
 .list-item {
-	margin-left: 20px;
+	/* margin: 0 auto; */
+	margin-left: 75px;
+}
+
+.line-through {
+	text-decoration: line-through;
 }
 
 .list-item-text {
@@ -35,7 +40,7 @@
 }
 
 .remove-list-item-button {
-	margin: 10px auto;
+	margin: 10px 0;
 }
 
 /* OTHER */

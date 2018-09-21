@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
 });
 
 // designate port
-const hostname = '127.0.0.1';
+const hostname = 'localhost';
 const port = process.env.PORT || '3000';
 
 // listen to port
