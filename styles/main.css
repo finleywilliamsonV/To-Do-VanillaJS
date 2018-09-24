@@ -44,7 +44,7 @@ input[type='checkbox'] {
 .card {
 	width: 40%;
 	/* background-color: transparent; */
-	/* border: none; */
+	border: black 1px solid;
 	padding: 1rem;
 	margin-top: 4rem;
 }
