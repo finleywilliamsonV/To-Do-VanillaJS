@@ -6,8 +6,7 @@
 	"author": "flwv",
 	"license": "MIT",
 	"dependencies": {
-		"@shopify/draggable": "^1.0.0-beta.8",
-		"http-server": "^0.11.1"
+		"@shopify/draggable": "^1.0.0-beta.8"
 	},
 	"devDependencies": {
 		"nodemon": "^1.18.4"
