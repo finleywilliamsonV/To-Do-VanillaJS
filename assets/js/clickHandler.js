@@ -12,33 +12,45 @@ addListItemButton.addEventListener('click', function(e) {
 	addListItemInput.value = '';
 });
 
-// add click listener to check box
-
-// Create blank list item
+// Create and return new blank list item
 function createBlankListItem(itemText) {
-	// increment created counter
+	// increment number created
 	numberCreated++;
+
 	// create parent div
 	const listItemDiv = document.createElement('div');
-	listItemDiv.setAttribute('class', 'list-item');
+	listItemDiv.setAttribute('class', 'input-group list-item my-1');
+
+	// create prepend div
+	const prependDiv = document.createElement('div');
+	prependDiv.setAttribute('class', 'input-group-prepend');
+	listItemDiv.appendChild(prependDiv);
+
+	// create input group text div
+	const inputGroupTextDiv = document.createElement('div');
+	inputGroupTextDiv.setAttribute('class', 'input-group-text');
+	prependDiv.appendChild(inputGroupTextDiv);
 
 	// create checkbox
 	const checkbox = document.createElement('input');
 	checkbox.setAttribute('type', 'checkbox');
 	checkbox.setAttribute('id', 'cb#' + numberCreated); // for tracking
 	checkbox.setAttribute('onchange', 'toggleLineThrough(this)');
-	listItemDiv.appendChild(checkbox);
+	checkbox.setAttribute('aria-label', 'Checkbox for to-do list item');
+	inputGroupTextDiv.appendChild(checkbox);
 
 	// create input text
 	const listItemTextBox = document.createElement('input');
-	listItemTextBox.setAttribute('class', 'list-item-text');
+	listItemTextBox.setAttribute('type', 'text');
+	listItemTextBox.setAttribute('class', 'form-control list-item-text mx-1');
 	listItemTextBox.setAttribute('value', itemText);
 	listItemTextBox.setAttribute('id', 'tb#' + numberCreated); // for tracking
+	listItemTextBox.setAttribute('aria-label', 'Edit existing to-do list item');
 	listItemDiv.appendChild(listItemTextBox);
 
 	// create remove button
 	const removeButton = document.createElement('button');
-	removeButton.setAttribute('class', 'btn remove-list-item-button');
+	removeButton.setAttribute('class', 'btn btn-danger remove-list-item-button');
 	removeButton.innerHTML = 'X';
 	removeButton.addEventListener('click', removeListItem);
 	listItemDiv.appendChild(removeButton);
@@ -46,10 +58,12 @@ function createBlankListItem(itemText) {
 	return listItemDiv;
 }
 
+// remove list item
 function removeListItem(e) {
 	listItems.removeChild(e.target.parentElement);
 }
 
+// apply/remove line-through to list item text
 function toggleLineThrough(checkBox) {
 	const checkboxNumber = checkBox.getAttribute('id').substring(3);
 	console.log(checkboxNumber);
@@ -58,14 +72,13 @@ function toggleLineThrough(checkBox) {
 
 	// toggle
 	if (checkBox.checked) {
-		textBoxToChange.setAttribute('class', 'list-item-text line-through');
+		textBoxToChange.setAttribute('class', 'form-control list-item-text line-through mx-1');
 	} else {
-		textBoxToChange.setAttribute('class', 'list-item-text');
+		textBoxToChange.setAttribute('class', 'form-control list-item-text mx-1');
 	}
 }
 
 // Add Default List Items
-
-listItems.appendChild(createBlankListItem('List Item 1'));
-listItems.appendChild(createBlankListItem('List Item 2'));
-listItems.appendChild(createBlankListItem('List Item 3'));
+listItems.appendChild(createBlankListItem('Walk the dog'));
+listItems.appendChild(createBlankListItem('Clean room'));
+listItems.appendChild(createBlankListItem('Learn Angular.js'));
