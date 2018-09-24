@@ -1,54 +1,62 @@
-* {
-	/* border: red 1px solid; */
-	/* vertical-align: middle; */
+/* _________________________________ */
+/* COLOR SCHEMES */
+
+.jumbotron {
+	background-color: #424b54;
+	margin-bottom: 3rem;
+	padding: 32px;
 }
 
-.display-4 {
+body {
+	background-color: #93a8ac;
+}
+
+#list-container {
+	background-color: #56494e;
+}
+
+.input-group-text {
+	background-color: transparent;
+	border: none;
+}
+
+/* _________________________________ */
+/* MISC STYLING */
+
+#example-title {
 	font-size: 3rem;
 }
 
-.list-container {
+#to-do-title {
+	margin-bottom: 2rem;
+}
+
+#list-container {
 	border: black 1px solid;
-	background-color: lightgrey;
 	max-width: 800px;
+	border-radius: 0.3rem;
 }
 
-#new-item-text-input {
-	width: 90%;
-	font-size: 1.1rem;
+input[type='checkbox'] {
+	cursor: pointer;
 }
 
-#add-list-item-form {
-	margin: 20px auto 0;
+.card {
+	width: 40%;
+	/* background-color: transparent; */
+	/* border: none; */
+	padding: 1rem;
+	margin-top: 4rem;
 }
 
-#add-new-list-item-button {
-	margin-left: 20px;
-}
-
-.list-item {
-	/* margin: 0 auto; */
-	margin-left: 85px;
+ul li {
+	font-size: 1.25rem;
 }
 
 .line-through {
 	text-decoration: line-through;
 }
 
-.list-item-text {
-	resize: none;
-	margin-left: 20px;
-	border: none;
-	background: transparent;
-	width: 70%;
-}
-
-.remove-list-item-button {
-	margin: 10px 0;
-}
-
-/* OTHER */
-
-.vertical-align {
-	vertical-align: middle;
+.draggable-mirror {
+	max-width: 769px;
 }
