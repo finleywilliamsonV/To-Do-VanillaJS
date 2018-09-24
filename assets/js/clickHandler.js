@@ -63,3 +63,9 @@ function toggleLineThrough(checkBox) {
 		textBoxToChange.setAttribute('class', 'list-item-text');
 	}
 }
+
+// Add Default List Items
+
+listItems.appendChild(createBlankListItem('List Item 1'));
+listItems.appendChild(createBlankListItem('List Item 2'));
+listItems.appendChild(createBlankListItem('List Item 3'));
