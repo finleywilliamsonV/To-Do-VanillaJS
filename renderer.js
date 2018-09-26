@@ -23,6 +23,7 @@ function css(fileName, res) {
 // function that imports static js
 function js(fileName, res) {
 	// read the file
+	console.log('FOR ERRORS:', fileName);
 	let fileContents = fs.readFileSync(`./assets/js${fileName}`, { encoding: 'utf8' });
 	// write out to the response
 	res.writeHead(200, { 'Content-Type': 'text/javascript' });

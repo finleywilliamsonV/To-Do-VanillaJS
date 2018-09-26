@@ -1,6 +1,12 @@
 /* _________________________________ */
 /* COLOR SCHEMES */
 
+* {
+	outline: none;
+	box-shadow: none !important;
+	/* border: 1px solid #ccc !important; */
+}
+
 .jumbotron {
 	/* background-color: #424b54; */
 	background-color: #535b63;
