@@ -13,6 +13,8 @@ addListeners();
 listItemsDiv.appendChild(createBlankListItem('Walk the dog'));
 listItemsDiv.appendChild(createBlankListItem('Clean room'));
 listItemsDiv.appendChild(createBlankListItem('Learn Angular.js'));
+// Check "clear checked items" button display
+checkButtonDisplay();
 // ______________________________________________________________
 
 /**
