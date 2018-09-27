@@ -4,6 +4,14 @@ const sortable = new Sortable(document.getElementById('list-items'), {
 	draggable: '.list-item',
 });
 
+sortable.on('drag:start', function(e) {
+	if (document.getElementById('drag-toggle').checked) {
+		console.log('is checked');
+		console.log(e);
+		e.cancel();
+	}
+});
+
 // let listItems = document.getElementsByClassName('list-item');
 
 // console.log(listItems);

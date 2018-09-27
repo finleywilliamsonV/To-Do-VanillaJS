@@ -1,67 +1,247 @@
-/* _________________________________ */
-/* COLOR SCHEMES */
-
-.jumbotron {
-	/* background-color: #424b54; */
-	background-color: #535b63;
-	margin-bottom: 3rem;
-	padding: 32px;
-	margin: 1rem;
+* {
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+	letter-spacing: 0.25px;
+	color: #495561;
 }
 
-body {
-	background-color: #93a8ac;
-}
-
-#list-container {
-	background-color: #56494e;
-}
-
-.input-group-text {
-	background-color: transparent;
-	border: none;
-}
-
-/* _________________________________ */
-/* MISC STYLING */
-
-#example-title {
-	font-size: 3rem;
-	margin: 0;
-	padding: 1rem;
-}
-
-#to-do-title {
-	margin-top: 4rem;
-	margin-bottom: 1rem;
-}
-
-#list-container {
-	border: black 1px solid;
-	max-width: 800px;
-	border-radius: 0.3rem;
+#tasks-completed-text,
+#new-item-text,
+.list-item-text {
+	font-size: 1.25rem;
 }
 
 input[type='checkbox'] {
 	cursor: pointer;
 }
 
-.card {
-	width: 40%;
-	/* background-color: transparent; */
-	border: black 1px solid;
-	padding: 1rem;
-	margin-top: 4rem;
-}
-
-ul li {
-	font-size: 1.25rem;
-}
+/* _________________________________ */
+/* COLOR SCHEMES */
+/* _________________________________ */
 
 .line-through {
 	text-decoration: line-through;
+	color: #30c48e;
 }
 
-.draggable-mirror {
-	max-width: 769px;
+/* _________________________________ */
+/* SPACING STYLES */
+/* _________________________________ */
+
+ul li {
+	margin-bottom: 0.5rem;
+}
+
+.list-item {
+	margin-bottom: 0.5rem;
+}
+
+.list-item-text {
+	margin-left: 3rem;
+}
+
+.btn-rounded {
+	border-radius: 33%;
+	width: 42px;
+}
+
+/* _________________________________ */
+/* MISC STYLING */
+/* _________________________________ */
+
+#clear-checked-items {
+	border-radius: 14px;
+	padding: 10px 16px;
+	margin-left: 3.75rem;
+	margin-top: 2rem;
+}
+
+#master-container {
+	max-width: 60%;
+	margin-top: 5rem;
+}
+
+#main-heading {
+	color: #495561;
+	font-size: 2.5rem;
+	font-weight: 700;
+	letter-spacing: 2px;
+	margin: 0;
+}
+
+#heading-underline {
+	background-color: #495561;
+	border: none;
+	height: 3px;
+	max-width: 100%;
+	margin: 0;
+}
+
+#row-instructions {
+	margin-top: 1.5rem;
+}
+
+#row-todo-list {
+	margin-top: 3rem;
+}
+
+#todo-list-card {
+	border: 3px solid #495561;
+	padding: 2rem;
+	border-radius: 1rem;
+}
+
+#tasks-completed-text {
+	color: #30c48e;
+	margin-left: 0.72rem;
+	margin-bottom: 1rem;
+}
+
+#list-items {
+	margin-top: 2rem;
+}
+
+/* _________________________________ */
+/* CUSTOM CHECKBOX & REMOVE BUTTON */
+/* _________________________________ */
+
+.checkbox-container {
+	display: block;
+	position: relative;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+/* Create the custom checkbox */
+.checkboxSpan,
+.checkmark {
+	position: absolute;
+	top: -16;
+	left: -16;
+	height: 44px;
+	width: 44px;
+	background-color: #989da0;
+	border-radius: 33%;
+}
+
+/* On mouse-over, add a darker grey background color */
+.checkbox-container:hover input ~ .checkmark {
+	background-color: #808080;
+	transition: 0.3s;
+}
+
+/* When the checkbox is checked, add a green background */
+.container input:checked ~ .checkmark {
+	background-color: #30c48e;
+}
+
+/* Style checkmark */
+.checkmark {
+	width: 44px;
+	height: 44px;
+	padding: 14px;
+}
+
+/* Style checkbox in instructions */
+.inst_check {
+	display: inline !important;
+	position: relative;
+	top: 0;
+	left: 0;
+	cursor: default;
+}
+
+.inst_check .checkmark {
+	height: 30px;
+	width: 30px;
+}
+
+.inst_check .checkmark {
+	padding: 10px;
+}
+
+/* Style button in instructions */
+.inst_button,
+.inst_button:disabled,
+.inst_button:hover {
+	height: 30px;
+	width: 30px;
+	padding-left: 10.5px;
+	padding-top: 0.5px;
+	cursor: default;
+	background-color: #dc3545;
+	opacity: 1 !important;
+}
+
+/* ______________________________ */
+/* CUSTOM STYLES FOR [+] BUTTON */
+/* ______________________________ */
+
+.btn-success:hover {
+	color: #fff;
+	background-color: #279c71;
+}
+
+.btn-success:focus,
+.btn-success.focus {
+	box-shadow: 0 0 0 0.2rem #30c48e;
+}
+
+.btn-success.disabled,
+.btn-success:disabled {
+	color: #fff;
+	background-color: #30c48e;
+}
+
+.btn-success:not(:disabled):not(.disabled):active,
+.btn-success:not(:disabled):not(.disabled).active,
+.show > .btn-success.dropdown-toggle {
+	color: #fff;
+	background-color: #30c48e;
+}
+
+.btn-success:not(:disabled):not(.disabled):active:focus,
+.btn-success:not(:disabled):not(.disabled).active:focus,
+.show > .btn-success.dropdown-toggle:focus {
+	box-shadow: 0 0 0 0.2rem rgba(0, 90, 90, 0.5);
+}
+
+.btn-success {
+	color: #fff;
+	background-color: #30c48e;
+	border: none;
+}
+
+/* _________________________________ */
+/* REMOVE DEFAULT STYLES */
+/* _________________________________ */
+
+* {
+	outline: none;
+	box-shadow: none !important;
+	/* border: 1px solid red !important; */
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+#new-item-text,
+.input-group-text,
+.list-item-text {
+	background-color: transparent;
+	border: none;
 }

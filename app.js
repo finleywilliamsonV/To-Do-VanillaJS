@@ -17,6 +17,10 @@ const server = http.createServer((req, res) => {
 	console.log('\nStarting js route');
 	router.javascript(req, res);
 
+	// begin img route
+	console.log('\nStarting img route');
+	router.image(req, res);
+
 	// begin index route
 	console.log('\nStarting generator route');
 	router.index(req, res);
