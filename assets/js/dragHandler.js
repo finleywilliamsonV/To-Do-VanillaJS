@@ -1,16 +1,16 @@
-// const Sortable = window.Sortable.default;
+const Sortable = window.Sortable.default;
 
-// const sortable = new Sortable(document.getElementById('list-items'), {
-// 	draggable: '.list-item',
-// });
+const sortable = new Sortable(document.getElementById('list-items'), {
+	draggable: '.list-item',
+});
 
-// sortable.on('drag:start', function(e) {
-// 	if (document.getElementById('drag-toggle').checked) {
-// 		console.log('is checked');
-// 		console.log(e);
-// 		e.cancel();
-// 	}
-// });
+sortable.on('drag:start', function(e) {
+	if (document.getElementById('drag-toggle').checked) {
+		console.log('is checked');
+		console.log(e);
+		e.cancel();
+	}
+});
 
 // let listItems = document.getElementsByClassName('list-item');
 
