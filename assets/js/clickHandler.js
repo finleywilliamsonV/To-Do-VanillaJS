@@ -7,18 +7,45 @@ const tasksCompleted = document.getElementsByClassName('line-through');
 
 let numberCreated = 0;
 
-// add click listener to add item button
-addListItemButton.addEventListener('click', function(e) {
-	const listItemText = addListItemInput.value;
-	// return if no text
-	if (!listItemText) return;
-	listItemsDiv.appendChild(createBlankListItem(listItemText));
-	addListItemInput.value = '';
+// setup code ___________________________________________________
+addListeners();
+// Add Default List Items
+listItemsDiv.appendChild(createBlankListItem('Walk the dog'));
+listItemsDiv.appendChild(createBlankListItem('Clean room'));
+listItemsDiv.appendChild(createBlankListItem('Learn Angular.js'));
+// ______________________________________________________________
 
-	checkButtonDisplay();
-});
+/**
+ * Adds click listeners to "add item" button & "clear checked items" button
+ */
+function addListeners() {
+	// add click listener to add item button [+]
+	addListItemButton.addEventListener('click', function(e) {
+		const listItemText = addListItemInput.value;
+		// return if no text
+		if (!listItemText) return;
+		// create the new list item
+		listItemsDiv.appendChild(createBlankListItem(listItemText));
+		addListItemInput.value = '';
 
-// Create and return new blank list item
+		checkButtonDisplay();
+	});
+
+	// add click listener to clear checked items button
+	clearCheckedItemsButton.addEventListener('click', function(e) {
+		const checkedItems = document.getElementsByClassName('line-through');
+		for (let i = checkedItems.length - 1; i >= 0; i--) {
+			listItemsDiv.removeChild(checkedItems[i].parentElement);
+		}
+		updateTasksCompleted();
+		checkButtonDisplay();
+	});
+}
+
+/**
+ * Create and return new blank list item
+ * @param {itemText} String text of new item
+ */
 function createBlankListItem(itemText) {
 	// increment number created
 	numberCreated++;
@@ -81,19 +108,23 @@ function createBlankListItem(itemText) {
 	return listItemDiv;
 }
 
-// remove list item
+/**
+ * Removes a specified list item
+ * @param {Event} e - Click event from remove item button
+ */
 function removeListItem(e) {
 	listItemsDiv.removeChild(e.target.parentElement);
 }
 
-// apply/remove line-through to list item text
+/**
+ * Applies/removes line-through to list item text
+ * @param {div} checkBox - Which checkbox was clicked
+ */
 function toggleLineThrough(checkBox) {
 	const checkboxNumber = checkBox.getAttribute('id').substring(3);
-	// console.log(checkboxNumber);
 	const textBoxToChange = document.getElementById('tb-' + checkboxNumber);
-	// console.log(textBoxToChange);
 
-	// toggle
+	// add/remove line-through class to textbox
 	if (checkBox.checked) {
 		textBoxToChange.setAttribute('class', 'form-control list-item-text line-through');
 	} else {
@@ -104,24 +135,18 @@ function toggleLineThrough(checkBox) {
 	checkButtonDisplay();
 }
 
+/**
+ * Updates tasks completed text
+ */
 function updateTasksCompleted() {
-	// update tasks completed
 	tasksCompletedText.innerText = tasksCompleted.length + ' TASK';
 	if (tasksCompleted.length != 1) tasksCompletedText.innerText += 'S';
 	tasksCompletedText.innerText += ' COMPLETED';
 }
 
-// add click handler to clear checked items button
-clearCheckedItemsButton.addEventListener('click', function(e) {
-	const checkedItems = document.getElementsByClassName('line-through');
-	for (let i = checkedItems.length - 1; i >= 0; i--) {
-		listItemsDiv.removeChild(checkedItems[i].parentElement);
-	}
-	updateTasksCompleted();
-	checkButtonDisplay();
-});
-
-// toggle display of clear checked items button
+/**
+ * Toggles display of "clear checked items" button
+ */
 function checkButtonDisplay() {
 	const checkedItems = document.getElementsByClassName('line-through');
 	if (checkedItems.length === 0) {
@@ -130,10 +155,3 @@ function checkButtonDisplay() {
 		clearCheckedItemsButton.setAttribute('style', 'display: block');
 	}
 }
-
-// Add Default List Items
-listItemsDiv.appendChild(createBlankListItem('Walk the dog'));
-listItemsDiv.appendChild(createBlankListItem('Clean room'));
-listItemsDiv.appendChild(createBlankListItem('Learn Angular.js'));
-
-checkButtonDisplay();

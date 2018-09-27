@@ -1,3 +1,4 @@
+// Add key listener to textbox, so enter submits
 var input = document.getElementById('new-item-text');
 
 input.addEventListener('keyup', function(e) {
