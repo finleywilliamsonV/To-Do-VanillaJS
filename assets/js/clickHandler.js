@@ -9,16 +9,14 @@ let numberCreated = 0;
 
 // setup code ___________________________________________________
 addListeners();
-// Add Default List Items
-listItemsDiv.appendChild(createBlankListItem('Walk the dog'));
-listItemsDiv.appendChild(createBlankListItem('Clean room'));
-listItemsDiv.appendChild(createBlankListItem('Learn Angular.js'));
+restoreLocalStorage();
+
 // Check "clear checked items" button display
 checkButtonDisplay();
 // ______________________________________________________________
 
 /**
- * Adds click listeners to "add item" button & "clear checked items" button
+ * Adds click listeners to "add item" button & "clear checked items" button.
  */
 function addListeners() {
 	// add click listener to add item button [+]
@@ -27,10 +25,11 @@ function addListeners() {
 		// return if no text
 		if (!listItemText) return;
 		// create the new list item
-		listItemsDiv.appendChild(createBlankListItem(listItemText));
+		listItemsDiv.appendChild(createNewListItem(listItemText));
 		addListItemInput.value = '';
 
 		checkButtonDisplay();
+		updateLocalStorage();
 	});
 
 	// add click listener to clear checked items button
@@ -39,16 +38,18 @@ function addListeners() {
 		for (let i = checkedItems.length - 1; i >= 0; i--) {
 			listItemsDiv.removeChild(checkedItems[i].parentElement);
 		}
+		updateLocalStorage();
 		updateTasksCompleted();
 		checkButtonDisplay();
 	});
 }
 
 /**
- * Create and return new blank list item
- * @param {itemText} String text of new item
+ * Create and return new blank list item.
+ * @param {String} itemText text of new item
+ * @param {boolean} isCompleted whether item is already marked completed
  */
-function createBlankListItem(itemText) {
+function createNewListItem(itemText, isCompleted = false) {
 	// increment number created
 	numberCreated++;
 
@@ -75,6 +76,8 @@ function createBlankListItem(itemText) {
 	checkbox.setAttribute('id', 'cb#' + numberCreated); // for tracking
 	checkbox.setAttribute('onchange', 'toggleLineThrough(this)');
 	checkbox.setAttribute('aria-label', 'Checkbox for to-do list item');
+	// if is completed, check checkbox
+	checkbox.checked = isCompleted;
 	checkboxLabel.appendChild(checkbox);
 	// create checkbox span
 	const checkboxSpan = document.createElement('span');
@@ -95,9 +98,17 @@ function createBlankListItem(itemText) {
 	const listItemTextBox = document.createElement('input');
 	listItemTextBox.setAttribute('type', 'text');
 	listItemTextBox.setAttribute('class', 'form-control list-item-text');
+	// if is completed, apply linethrough
+	if (isCompleted) {
+		listItemTextBox.setAttribute('class', 'form-control list-item-text line-through');
+	}
 	listItemTextBox.setAttribute('value', itemText);
 	listItemTextBox.setAttribute('id', 'tb-' + numberCreated); // for tracking
 	listItemTextBox.setAttribute('aria-label', 'Edit existing to-do list item');
+	// add listener to store changes to localstorage
+	listItemTextBox.addEventListener('keyup', function(e) {
+		updateLocalStorage();
+	});
 	listItemDiv.appendChild(listItemTextBox);
 
 	// create remove button
@@ -111,22 +122,24 @@ function createBlankListItem(itemText) {
 }
 
 /**
- * Removes a specified list item
+ * Removes a specified list item.
  * @param {Event} e - Click event from remove item button
  */
 function removeListItem(e) {
+	// console.log('REMOVING LIST ITEM:', e.target.parentElement);
 	listItemsDiv.removeChild(e.target.parentElement);
+	updateLocalStorage();
 }
 
 /**
- * Applies/removes line-through to list item text
+ * Applies/removes line-through to list item text.
  * @param {div} checkBox - Which checkbox was clicked
  */
 function toggleLineThrough(checkBox) {
 	const checkboxNumber = checkBox.getAttribute('id').substring(3);
 	const textBoxToChange = document.getElementById('tb-' + checkboxNumber);
 
-	// add/remove line-through class to textbox
+	// add/remove line-through class to textbox.
 	if (checkBox.checked) {
 		textBoxToChange.setAttribute('class', 'form-control list-item-text line-through');
 	} else {
@@ -135,10 +148,11 @@ function toggleLineThrough(checkBox) {
 
 	updateTasksCompleted();
 	checkButtonDisplay();
+	updateLocalStorage();
 }
 
 /**
- * Updates tasks completed text
+ * Updates tasks completed text.
  */
 function updateTasksCompleted() {
 	tasksCompletedText.innerText = tasksCompleted.length + ' TASK';
@@ -147,7 +161,7 @@ function updateTasksCompleted() {
 }
 
 /**
- * Toggles display of "clear checked items" button
+ * Toggles display of "clear checked items" button.
  */
 function checkButtonDisplay() {
 	const checkedItems = document.getElementsByClassName('line-through');
@@ -155,5 +169,56 @@ function checkButtonDisplay() {
 		clearCheckedItemsButton.setAttribute('style', 'display: none');
 	} else {
 		clearCheckedItemsButton.setAttribute('style', 'display: block');
+	}
+}
+
+/**
+ * Updates local storage, reflecting list items and their completed status.
+ */
+function updateLocalStorage() {
+	// console.log('/nUpdating Local Storage');
+	const listItems = document.getElementsByClassName('list-item');
+	// console.log('List Items', listItems);
+
+	let currentListItem, currentListItemText;
+	let listItemsJSON = {};
+
+	// iterate through all list items
+	for (let i = 0; i < listItems.length; i++) {
+		currentListItem = listItems[i];
+		currentListItemText = currentListItem.children[1].value;
+		// console.log(currentListItemText);
+
+		const keyName = 'item-' + i;
+
+		// check if item is marked completed
+		let isCompleted = currentListItem.children[1].classList.contains('line-through');
+		// console.log('isCompleted:', isCompleted);
+
+		// append information onto js object
+		listItemsJSON[keyName] = {
+			text: currentListItemText,
+			isCompleted: isCompleted,
+		};
+	}
+
+	// console.log('listItemsJSON', listItemsJSON);
+	localStorage.setItem('todo-list-items', JSON.stringify(listItemsJSON));
+}
+
+function restoreLocalStorage() {
+	console.log('Restoring local storage');
+	const storedItems = JSON.parse(localStorage.getItem('todo-list-items'));
+	console.log('Stored items:', storedItems);
+
+	if (storedItems) {
+		for (let key in storedItems) {
+			listItemsDiv.appendChild(createNewListItem(storedItems[key].text, storedItems[key].isCompleted));
+		}
+	} else {
+		// Add Default List Items
+		listItemsDiv.appendChild(createNewListItem('Walk the dog'));
+		listItemsDiv.appendChild(createNewListItem('Clean room'));
+		listItemsDiv.appendChild(createNewListItem('Learn Angular.js'));
 	}
 }
