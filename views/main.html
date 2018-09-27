@@ -1,55 +1,64 @@
-<!-- Linked Scripts -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-  crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-  crossorigin="anonymous"></script>
+<div class="container" id="master-container">
 
-<!-- Title Jumbotron -->
-<div class="jumbotron">
-  <div class="container text-center">
-    <h1 class="display-4 title" id="example-title">To-Do List (Vanilla JS w/ Sortable)</h1>
+  <!-- Heading Row -->
+  <div class="row" id="row-heading">
+    <div class="col">
+      <h1 class="display-5" id="main-heading">ToDo List</h1>
+      <hr id="heading-underline">
+      <div>Created with Vanilla JS and Bootstrap</div>
+    </div>
+  </div>
+
+  <!-- Instructions Row -->
+  <div class="row" id="row-instructions">
+    <div class="col" id="instructions-list">
+      <ul>
+        <li>Click
+          <label class='inst_check checkbox-container'>
+            <span class="inst_check checkbox-span"></span>
+            <img alt="checkmark" class="inst_check checkmark" src="./check-3.png">
+          </label> to cross off items
+        </li>
+        <li>Click <button class="inst_button btn btn-danger btn-rounded remove-list-item-button disabled">x</button> to
+          clear
+          items</li>
+        <!-- <li>Click and drag to rearrange</li> -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- ToDo List Row -->
+  <div class="row" id="row-todo-list">
+    <div class="col">
+
+      <div class="card" id="todo-list-card">
+        <div id="tasks-completed">
+          <p id="tasks-completed-text">0 TASKS COMPLETED</p>
+
+          <!-- Add new item -->
+          <div class="input-group">
+            <input type="text" class="form-control form-control" id="new-item-text" placeholder="Add new item here...">
+            <button class="btn btn-success btn-rounded" id="add-new-item-button">+</button>
+          </div>
+
+          <!-- Added list items -->
+          <div id="list-items">
+
+          </div>
+
+          <!-- Clear Checked Items -->
+          <button class='btn btn-danger' id='clear-checked-items'>Clear checked items</button>
+
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
-<!-- To-Do List Heading -->
-<div class="container text-center" id="to-do-title">
-  <h1 id="main-title">To-Do</h1>
-</div>
 
-<!-- List Container -->
-<div class="container" id="list-container">
-
-  <!-- Add new item -->
-  <div class="input-group my-3">
-    <input type="text" class="form-control form-control-lg mr-1" id="new-item-text-input" placeholder="Add new item here..."
-      aria-label="Add new to-do item">
-    <button class="btn btn-primary" id="add-new-list-item-button">+</button>
-  </div>
-
-  <!-- Added list items -->
-  <div class="my-3" id="list-items">
-
-  </div>
-</div>
-
-
-<div class="container mt-5" id="instructions">
-  <div class="card mx-auto">
-    <h3 class="card-title">Instructions:</h3>
-    <ul>
-      <li>Add new item text to first textbox.</li>
-      <li>Press enter or click '+' button to add.</li>
-      <li>Click checkbox to mark through text.</li>
-      <li>Click item text to edit.</li>
-      <li>Click red 'X' to remove items.</li>
-      <li>Click and drag to rearrange.</li>
-    </ul>
-  </div>
-</div>
-
-<div>
+<!-- TOGGLE DRAG BUTTON -->
+<!-- <div>
   <span>Toggle Drag: </span>
   <input type='checkbox' id='drag-toggle'>
-</div>
+</div> -->

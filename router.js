@@ -29,7 +29,7 @@ function style(req, res) {
 		console.log('router.style() -> CSS Request URL: ' + req.url);
 		console.log('router.style() -> CSS Request Method: ' + req.method);
 
-		renderer.css(req.url, res);
+		renderer.css(req, res);
 		res.end();
 	}
 }
@@ -40,7 +40,18 @@ function javascript(req, res) {
 		console.log('router.javascript() -> JS Request URL: ' + req.url);
 		console.log('router.javascript() -> JS Request Method: ' + req.method);
 
-		renderer.js(req.url, res);
+		renderer.js(req, res);
+		res.end();
+	}
+}
+
+// serve static images
+function image(req, res) {
+	if (req.url.indexOf('.png') !== -1) {
+		console.log('router.img() -> Image Request URL: ' + req.url);
+		console.log('router.img() -> Image Request Method: ' + req.method);
+
+		renderer.img(req, res);
 		res.end();
 	}
 }
@@ -74,3 +85,4 @@ function javascript(req, res) {
 module.exports.index = index;
 module.exports.style = style;
 module.exports.javascript = javascript;
+module.exports.image = image;
