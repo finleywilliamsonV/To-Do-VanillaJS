@@ -213,7 +213,7 @@ function restoreLocalStorage() {
   const storedItems = JSON.parse(localStorage.getItem('todo-list-items'));
 
   if (storedItems) {
-    const keys = storedItems.keys();
+    const keys = Object.keys(storedItems);
     for (let i = 0; i < keys.length; i++) {
       listItemsDiv.appendChild(
           createNewListItem(
