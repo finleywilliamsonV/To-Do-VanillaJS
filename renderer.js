@@ -1,51 +1,68 @@
 const fs = require('fs');
-const utf8 = { encoding: 'utf8' };
+const utf8 = {encoding: 'utf8'};
 const path = require('path');
 
-function view(templateName, values, res) {
-	// read from the template files
-	let fileContents = fs.readFileSync(`./views/${templateName}.html`, utf8);
+/**
+ * Writes a specified view to the response object.
+ * @param {String} templateName - Name of template to view
+ * @param {Object} res - Response object
+ * @return {Function} - writes the file contents to the response object
+ */
+function view(templateName, res) {
+  // read from the template files
+  let fileContents = fs.readFileSync(`./views/${templateName}.html`, utf8);
 
-	// merge in values
-
-	// write to the response
-	return res.write(fileContents);
+  // write to the response
+  return res.write(fileContents);
 }
 
-// function that imports css
+
+/**
+ * Imports css and writes to response object.
+ * @param {Object} req - Request object
+ * @param {Object} res - Response object
+ */
 function css(req, res) {
-	// get file path
-	const assetsPath = path.resolve('./styles');
-	const filePath = path.join(assetsPath, req.url);
-	// read the file
-	let fileContents = fs.readFileSync(filePath, { encoding: 'utf8' });
-	// write out to the response
-	res.writeHead(200, { 'Content-Type': 'text/css' });
-	res.write(fileContents);
+  // get file path
+  const assetsPath = path.resolve('./styles');
+  const filePath = path.join(assetsPath, req.url);
+  // read the file
+  let fileContents = fs.readFileSync(filePath, {encoding: 'utf8'});
+  // write out to the response
+  res.writeHead(200, {'Content-Type': 'text/css'});
+  res.write(fileContents);
 }
 
-// function that imports static js
+/**
+ * Imports javascript and writes to response object.
+ * @param {Object} req - Request object
+ * @param {Object} res - Response object
+ */
 function js(req, res) {
-	// get file path
-	const assetsPath = path.resolve('./assets');
-	const filePath = path.join(assetsPath, 'js', req.url);
-	// read the file
-	let fileContents = fs.readFileSync(filePath, { encoding: 'utf8' });
-	// write out to the response
-	res.writeHead(200, { 'Content-Type': 'text/javascript' });
-	res.write(fileContents);
+  // get file path
+  const assetsPath = path.resolve('./assets');
+  const filePath = path.join(assetsPath, 'js', req.url);
+  // read the file
+  let fileContents = fs.readFileSync(filePath, {encoding: 'utf8'});
+  // write out to the response
+  res.writeHead(200, {'Content-Type': 'text/javascript'});
+  res.write(fileContents);
 }
 
-// function that imports static images
+/**
+ * Imports static images and writes to response object.
+ * @param {Object} req - Request object
+ * @param {Object} res - Response object
+ */
 function img(req, res) {
-	// get file path
-	const assetsPath = path.resolve('./assets');
-	const filePath = path.join(assetsPath, 'img', req.url);
-	// read the file
-	let fileContents = fs.readFileSync(filePath);
-	// write out to the response
-	res.writeHead(200, { 'Content-Type': 'image/png' });
-	res.write(fileContents);
+  // get file path
+  const assetsPath = path.resolve('./assets');
+  const filePath = path.join(assetsPath, 'img', req.url);
+  // read the file
+  let fileContents = fs.readFileSync(filePath);
+  // write out to the response
+  res.writeHead(200, {'Content-Type': 'image/png'});
+  res.write(fileContents);
 }
 
 module.exports.view = view;

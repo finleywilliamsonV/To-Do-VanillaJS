@@ -5,8 +5,11 @@
 	"main": "app.js",
 	"author": "flwv",
 	"license": "MIT",
-	"dependencies": {},
+	"dependencies": {
+		"eslint-config-google": "^0.10.0"
+	},
 	"devDependencies": {
+		"eslint": "^5.6.0",
 		"nodemon": "^1.18.4"
 	}
 }
