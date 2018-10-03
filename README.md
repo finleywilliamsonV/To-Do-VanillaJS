@@ -9,6 +9,7 @@ I created this app to test & refine the following skills:
 -   use vanilla JS to create a server, and serve a basic website
 -   serve static files like css and js
 -   use views to dynamically create the page
+-   store and retrieve user data in localstorage
 -   implement Bootstrap and use to style the page
 -   use GitHub as a version control system
 
