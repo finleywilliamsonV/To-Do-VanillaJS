@@ -153,6 +153,8 @@ function createNewListItem(itemText, isCompleted = false) {
 function removeListItem(e) {
   listItemsDiv.removeChild(e.target.parentElement);
   updateLocalStorage();
+  updateTasksCompleted();
+  checkButtonDisplay();
 }
 
 /**
