@@ -225,7 +225,7 @@ function restoreLocalStorage() {
     }
   } else {
     // Add Default List Items
-    listItemsDiv.appendChild(createNewListItem('Ponder existance'));
+    listItemsDiv.appendChild(createNewListItem('Ponder existence'));
     listItemsDiv.appendChild(createNewListItem('Practice napping in reverse'));
     listItemsDiv.appendChild(createNewListItem('Learn Angular.js'));
   }
