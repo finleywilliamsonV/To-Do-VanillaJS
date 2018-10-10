@@ -86,10 +86,10 @@ function createNewListItem(itemText, isCompleted = false) {
     if (checkbox.checked) {
       textBoxToChange.setAttribute(
           'class',
-          'form-control list-item-text line-through'
+          'form-control list-item-text line-through todo-item-checked'
       );
     } else {
-      textBoxToChange.setAttribute('class', 'form-control list-item-text');
+      textBoxToChange.setAttribute('class', 'form-control list-item-text todo-item-unchecked');
     }
 
     updateTasksCompleted();
@@ -225,8 +225,8 @@ function restoreLocalStorage() {
     }
   } else {
     // Add Default List Items
-    listItemsDiv.appendChild(createNewListItem('Walk the dog'));
-    listItemsDiv.appendChild(createNewListItem('Clean room'));
+    listItemsDiv.appendChild(createNewListItem('Ponder Existance'));
+    listItemsDiv.appendChild(createNewListItem('Practice napping in reverse'));
     listItemsDiv.appendChild(createNewListItem('Learn Angular.js'));
   }
 }
