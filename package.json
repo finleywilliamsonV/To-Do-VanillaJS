@@ -2,7 +2,7 @@
 	"name": "vanilla-js",
 	"version": "1.0.0",
 	"description": "To-Do List - Vanilla JS ",
-	"main": "app.js",
+	"main": "app-todo.js",
 	"author": "flwv",
 	"license": "MIT",
 	"dependencies": {
@@ -13,6 +13,6 @@
 		"nodemon": "^1.18.4"
 	},
 	"scripts": {
-		"start": "node app.js"
+		"start": "node app-todo.js"
 	}
 }

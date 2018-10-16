@@ -24,7 +24,7 @@ yarn install
 The app can be served by running:
 
 ```
-node app.js
+node app-todo.js
 ```
 
 At which point the site will be served on port 3000, which can be visited at:
