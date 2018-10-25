@@ -1,0 +1,39 @@
+@media (min-width: 0px) {
+
+  #master-container {
+    max-width: 95%;
+    margin-top: 1rem;
+  }
+
+  #todo-list-card {
+    padding: 1rem;
+  }
+
+  #row-todo-list {
+    margin-top: 1rem;
+  }
+
+  .list-item-text {
+    margin-left: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+
+  #master-container {
+    max-width: 60%;
+    margin-top: 5rem;
+  }
+
+  #todo-list-card {
+    padding: 2rem;
+  }
+
+  #row-todo-list {
+    margin-top: 3rem;
+  }
+
+  .list-item-text {
+    margin-left: 3rem;
+  }
+}
